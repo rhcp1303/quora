@@ -10,4 +10,6 @@ urlpatterns = [
     path('question/<int:question_id>/', views.view_question, name='view_question'),
     path('question/<int:question_id>/answer/', views.answer_question, name='answer_question'),
     path('answer/<int:answer_id>/like/', views.like_answer, name='like_answer'),
+    path('question/<int:question_id>/like/', views.upvote_question, name='upvote_question'),
+
 ]

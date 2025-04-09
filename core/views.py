@@ -80,3 +80,12 @@ def like_answer(request, answer_id):
     else:
         answer.likes.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))
+
+@login_required
+def upvote_question(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user in question.upvotes.all():
+        question.upvotes.remove(request.user)
+    else:
+        question.upvotes.add(request.user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))

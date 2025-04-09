@@ -16,7 +16,7 @@ def register(request):
             return redirect('home')
     else:
         form = RegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'html/registration/register.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -27,7 +27,7 @@ def user_login(request):
             return redirect('home')
     else:
         form = LoginForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'html/registration/login.html', {'form': form})
 
 @login_required
 def user_logout(request):
@@ -37,7 +37,7 @@ def user_logout(request):
 @login_required
 def home(request):
     questions = Question.objects.all().order_by('-created_at')
-    return render(request, 'core/home.html', {'questions': questions})
+    return render(request, 'html/core/home.html', {'questions': questions})
 
 @login_required
 def ask_question(request):
@@ -50,14 +50,14 @@ def ask_question(request):
             return redirect('home')
     else:
         form = QuestionForm()
-    return render(request, 'core/ask_question.html', {'form': form})
+    return render(request, 'html/core/ask_question.html', {'form': form})
 
 @login_required
 def view_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     answers = Answer.objects.filter(question=question).order_by('-created_at')
     answer_form = AnswerForm()
-    return render(request, 'core/view_question.html', {'question': question, 'answers': answers, 'answer_form': answer_form})
+    return render(request, 'html/core/view_question.html', {'question': question, 'answers': answers, 'answer_form': answer_form})
 
 @login_required
 def answer_question(request, question_id):

@@ -3,12 +3,20 @@
 {% block content %}
   <h2>{{ question.content }}</h2>
   <p>Asked by: {{ question.user.username }} on {{ question.created_at }}</p>
-  <form method="post" action="{% url 'upvote_question' question.id %}">
-            {% csrf_token %}
-            <button type="submit" class="like-button">
-              {% if request.user in question.upvotes.all %}Downvote{% else %}Upvote{% endif %} ({{ question.upvotes.count }})
-            </button>
-  </form>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <form method="post" action="{% url 'upvote_question' question.id %}">
+      {% csrf_token %}
+      <button type="submit" class="like-button">
+        Upvote ({{ question.upvotes.count }})
+      </button>
+    </form>
+    <form method="post" action="{% url 'downvote_question' question.id %}">
+      {% csrf_token %}
+      <button type="submit" class="dislike-button">
+        Downvote ({{ question.downvotes.count }})
+      </button>
+    </form>
+  </div>
   <hr>
   <h3>Answers</h3>
   {% if answers %}

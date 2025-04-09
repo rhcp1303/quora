@@ -89,3 +89,12 @@ def upvote_question(request, question_id):
     else:
         question.upvotes.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))
+
+@login_required
+def downvote_question(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user in question.downvotes.all():
+        question.downvotes.remove(request.user)
+    else:
+        question.downvotes.add(request.user)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))

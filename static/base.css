@@ -1,6 +1,7 @@
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Quora uses a similar sans-serif */
     margin: 0; /* Remove default body margin */
+    padding-left: 20px; /* Add left padding to the body */
     background-color: #f2f2f2; /* Light gray background */
     color: #333; /* Dark gray text */
     line-height: 1.6;
@@ -8,7 +9,7 @@ body {
 
 .container {
     max-width: 960px; /* Center the content */
-    margin: 20px auto;
+    margin: 20px auto; /* Keep auto for horizontal centering */
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -118,7 +119,7 @@ h3 {
 }
 
 .errorlist {
-    color: #d9534f; /* Red error color */
+    color: red; /* Red error color */
     margin-bottom: 10px;
     padding: 8px;
     border: 1px solid #f2dede;

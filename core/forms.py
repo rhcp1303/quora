@@ -13,7 +13,10 @@ class LoginForm(AuthenticationForm):
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['title', 'content']
+        fields = ['content']
+        labels = {
+            'content': '',
+        }
 
 class AnswerForm(forms.ModelForm):
     class Meta:
@@ -21,4 +24,7 @@ class AnswerForm(forms.ModelForm):
         fields = ['content']
         widgets = {
             'content': forms.Textarea(attrs={'rows': 3}),
+        }
+        labels = {
+            'content': '',
         }

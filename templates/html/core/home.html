@@ -6,7 +6,7 @@
     <ul>
       {% for question in questions %}
         <li class="question">
-          <a href="{% url 'view_question' question.id %}">{{ question.title }}</a>
+          <a href="{% url 'view_question' question.id %}">{{ question.content }}</a>
           <p>Asked by: {{ question.user.username }} on {{ question.created_at }}</p>
         </li>
       {% endfor %}

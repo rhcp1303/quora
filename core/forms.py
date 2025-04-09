@@ -17,6 +17,9 @@ class QuestionForm(forms.ModelForm):
         labels = {
             'content': '',
         }
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 3}),
+        }
 
 class AnswerForm(forms.ModelForm):
     class Meta:

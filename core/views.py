@@ -83,17 +83,25 @@ def like_answer(request, answer_id):
 @login_required
 def upvote_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    if request.user in question.upvotes.all():
-        question.upvotes.remove(request.user)
+    user = request.user
+    if user in question.upvotes.all():
+        question.upvotes.remove(user)
+    elif user in question.downvotes.all():
+        question.downvotes.remove(user)
+        question.upvotes.add(user)
     else:
-        question.upvotes.add(request.user)
+        question.upvotes.add(user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))
 
 @login_required
 def downvote_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    if request.user in question.downvotes.all():
-        question.downvotes.remove(request.user)
+    user = request.user
+    if user in question.downvotes.all():
+        question.downvotes.remove(user)
+    elif user in question.upvotes.all():
+        question.upvotes.remove(user)
+        question.downvotes.add(user)
     else:
-        question.downvotes.add(request.user)
+        question.downvotes.add(user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))
